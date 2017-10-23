@@ -11,11 +11,11 @@
     
     <dependencies>         
         <dependency>
-            <groupId>robocode</groupId>
-            <artifactId>robocode-api</artifactId>
+            <groupId>net.sf.robocode</groupId>
+            <artifactId>robocode.api</artifactId>
             <version>1.9.2.6</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-core</artifactId>
