@@ -5,11 +5,9 @@ import java.util.*;
 public class Functions {
 
     public static double huberLoss(ArrayList<Transition> batch) {
-        double[] s = batch.stream()
-                .mapToDouble((Transition t) -> LFunction(t.getReward())).toArray();
-        double sum = 1;
-
-        return sum / batch.size();
+        return batch.stream()
+                .mapToDouble((Transition t) -> LFunction(t.getReward()))
+                .sum() / batch.size();
     }
 
     public static double LFunction(double δ) {
