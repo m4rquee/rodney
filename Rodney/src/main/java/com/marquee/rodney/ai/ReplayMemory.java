@@ -5,13 +5,16 @@ import java.util.stream.*;
 
 public class ReplayMemory {
 
-    private final int capacity;
     private int position;
+    private final int capacity;
 
     private final ArrayList<Transition> transitions;
 
-    public ReplayMemory(int capacity) throws IllegalArgumentException {
+    private final Random rnd;
+
+    public ReplayMemory(int capacity, int seed) throws IllegalArgumentException {
         this.transitions = new ArrayList(capacity);
+        this.rnd = new Random(seed);
         this.capacity = capacity;
         this.position = 0;
     }
@@ -31,10 +34,8 @@ public class ReplayMemory {
             throw new IllegalArgumentException("Illegal size: " + batchSize);
         }
 
-        Random random = new Random();
-
         return IntStream
-                .generate(() -> random.nextInt(this.transitions.size()))
+                .generate(() -> this.rnd.nextInt(this.transitions.size()))
                 .distinct()
                 .limit(batchSize)
                 .mapToObj(this.transitions::get)
