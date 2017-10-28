@@ -69,14 +69,13 @@ public class TriangleArea {
                         .build()
                 );
 
-        for (int i = 1; i < numHiddenLayers; i++) {
+        for (int i = 1; i < numHiddenLayers; i++)
             conf.layer(i, new DenseLayer.Builder()
                     .nIn(numHiddenNodes)
                     .nOut(numHiddenNodes)
                     .activation(Activation.TANH)
                     .build()
             );
-        }
 
         conf.layer(numHiddenLayers, new OutputLayer.Builder(LossFunctions.LossFunction.SQUARED_LOSS)
                 .nIn(numHiddenNodes)
@@ -102,7 +101,7 @@ public class TriangleArea {
         System.out.println(this.areas);
         System.out.println(eval());
 
-        for (int i = 0, j = 0; i < this.numEpochs; i++) {
+        for (int i = 0; i < this.numEpochs; i++) {
             this.iterator.reset();
             this.nn.fit(this.iterator);
         }
@@ -113,7 +112,7 @@ public class TriangleArea {
     }
 
     public INDArray eval(double a, double b, double c) {
-        INDArray input = Nd4j.create(new double[]{a, b, c}, new int[]{1, 3});
+        INDArray input = Nd4j.create(new double[] {a, b, c}, new int[] {1, 3});
 
         return this.nn.output(input, true);
     }

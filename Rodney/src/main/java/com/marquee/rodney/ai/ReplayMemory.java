@@ -20,19 +20,17 @@ public class ReplayMemory {
     }
 
     public void push(Transition transition) {
-        if (this.transitions.size() < this.capacity) {
+        if (this.transitions.size() < this.capacity)
             this.transitions.add(transition);
-        } else {
+        else
             this.transitions.set(this.position, transition);
-        }
 
         this.position = ++this.position % this.capacity;
     }
 
     public ArrayList<Transition> sample(int batchSize) throws IllegalArgumentException {
-        if (batchSize < 0 || batchSize > this.capacity) {
+        if (batchSize < 0 || batchSize > this.capacity)
             throw new IllegalArgumentException("Illegal size: " + batchSize);
-        }
 
         return IntStream
                 .generate(() -> this.rnd.nextInt(this.transitions.size()))
