@@ -1,12 +1,13 @@
 package com.marquee.rodney;
 
-import com.marquee.rodney.ai.Functions;
-import com.marquee.rodney.ai.ReplayMemory;
-import com.marquee.rodney.ai.Transition;
+import com.marquee.rodney.ai.*;
+import java.util.*;
 
 public class tester {
 
     public static void main(String[] args) {
+        Random rnd = new Random(System.currentTimeMillis());
+
 //        TriangleArea triangleArea = new TriangleArea(System.currentTimeMillis(), 0.1, 0, 1000, 1000, 2, 10, 3, 1, 1);
 //
 //        for (int j = 0; j < 10; j++) {
@@ -20,11 +21,10 @@ public class tester {
 //                triangleArea.train();
 //            }
 //        }
+        ArrayList<Double> a = new ArrayList<>();
+        for (int i = 0; i < 3; i++)
+            a.add(rnd.nextDouble());
 
-        ReplayMemory a = new ReplayMemory(125, (int) System.currentTimeMillis());
-        for (int i = 0; i < 125; i++)
-            a.push(new Transition(i, i, i, i * 0.01));
-
-        System.out.println(Functions.huberLoss(a.sample(3)));
+        System.out.println(Arrays.toString(Functions.actionsPR(a, 0.5)));
     }
 }

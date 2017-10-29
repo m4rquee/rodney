@@ -12,7 +12,7 @@ public class ReplayMemory {
 
     private final Random rnd;
 
-    public ReplayMemory(int capacity, int seed) throws IllegalArgumentException {
+    public ReplayMemory(int capacity, long seed) throws IllegalArgumentException {
         this.transitions = new ArrayList(capacity);
         this.rnd = new Random(seed);
         this.capacity = capacity;
