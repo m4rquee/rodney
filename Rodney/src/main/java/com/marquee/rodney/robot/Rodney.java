@@ -6,6 +6,8 @@ public class Rodney extends AdvancedRobot {
 
     @Override
     public void run() {
-
+        while (true) {            
+            out.println(getEnergy());
+        }
     }
 }
