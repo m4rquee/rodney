@@ -1,4 +1,4 @@
-package com.marquee.rodney.ai;
+package com.marquee.ai;
 
 import java.util.*;
 import java.util.stream.*;
