@@ -1,11 +1,11 @@
-package com.marquee.ai;
+package com.marquee.ai.nn;
 
 public class NNetwork {
 
-    private int inputSize;
-    private int outputSize;
-    private int hiddenSize;
-    private int hiddenNum;
+    private final int inputSize;
+    private final int outputSize;
+    private final int hiddenSize;
+    private final int hiddenNum;
 
     public NNetwork(int inputSize, int outputSize, int hiddenSize, int hiddenNum) {
         this.inputSize = inputSize;
