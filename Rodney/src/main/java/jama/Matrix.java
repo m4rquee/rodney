@@ -3,6 +3,7 @@ package jama;
 import java.io.*;
 import java.text.*;
 import java.util.*;
+import java.util.function.*;
 
 public class Matrix implements Cloneable, java.io.Serializable {
 
@@ -427,6 +428,15 @@ public class Matrix implements Cloneable, java.io.Serializable {
                 C[i][j] = s;
             }
         }
+        return X;
+    }
+
+    public Matrix applyFunc(Function<Double, Double> func) {
+        Matrix X = new Matrix(m, n);
+        double[][] C = X.getArray();
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                C[i][j] = func.apply(A[i][j]);
         return X;
     }
 
