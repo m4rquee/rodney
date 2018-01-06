@@ -22,17 +22,27 @@ public class NNetwork {
 
         this.weights[0] = Matrix.random(inputSize, hiddenSize);
 
-        for (int i = 1; i <= hiddenNum; i++)
+        for (int i = 1; i < hiddenNum; i++)
             this.weights[i] = Matrix.random(hiddenSize, hiddenSize);
 
         this.weights[hiddenNum] = Matrix.random(hiddenSize, outputSize);
     }
 
     public Matrix foward(Matrix x) {
-        Matrix ret = x.times(this.weights[0]);
+        if (x.getRowDimension() != 1)
+            throw new IllegalArgumentException("Matrix dimensions must agree.");
+        else if (x.getColumnDimension() != this.inputSize)
+            throw new IllegalArgumentException("Matrix dimensions must agree.");
 
+        Matrix ret = x.times(this.weights[0]);
         ret = ret.applyFunc(Functions::relu);
 
-        return ret;
+        for (int i = 1; i < hiddenNum; i++) {
+            ret = ret.times(this.weights[i]);
+            ret = ret.applyFunc(Functions::relu);
+        }
+
+        ret = ret.times(this.weights[this.hiddenNum]);
+        return ret.applyFunc(Functions::relu);
     }
 }

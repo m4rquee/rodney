@@ -30,4 +30,8 @@ public class Functions {
     public static double relu(double x) {
         return Math.max(0, x);
     }
+
+    public static double reluPrime(double x) {
+        return x > 0 ? 1 : 0;
+    }
 }
